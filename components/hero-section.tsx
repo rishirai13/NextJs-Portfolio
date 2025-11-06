@@ -84,7 +84,7 @@ export default function HeroSection() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a
-                href="mailto:rairishi934@gmail.com"
+                href="mailto:connect.rishirai@gmail.com"
                 className="text-slate-600 hover:text-blue-600 transition-all duration-200 hover:scale-110"
               >
                 <Mail className="w-6 h-6" />
