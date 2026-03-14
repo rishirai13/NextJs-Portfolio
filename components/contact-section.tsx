@@ -65,8 +65,8 @@ export default function ContactSection() {
     {
       icon: <Mail className="w-6 h-6" />,
       label: "Email",
-      value: "rairishi934@gmail.com",
-      href: "mailto:rairishi934@gmail.com",
+      value: "connect.rishirai@gmail.com",
+      href: "mailto:connect.rishirai@gmail.com",
       color: "blue",
     },
     {
@@ -79,7 +79,7 @@ export default function ContactSection() {
     {
       icon: <MapPin className="w-6 h-6" />,
       label: "Location",
-      value: "Mathura, India",
+      value: "Banglore, India",
       href: "#",
       color: "purple",
     },
