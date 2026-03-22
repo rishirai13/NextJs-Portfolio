@@ -265,7 +265,7 @@ export default function Footer() {
               whiteSpace: "nowrap",
             }}
           >
-            IIT Patna · MTech AI & DS · 2026
+            IIT Patna · MTech AI & DSE · 2026
           </div>
         </div>
       </div>
