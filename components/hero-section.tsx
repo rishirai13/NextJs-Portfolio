@@ -356,7 +356,7 @@ export default function HeroSection() {
                 }}
               >
                 <Image
-                  src="/images/github.jpg"
+                  src="/images/my-profile.png"
                   alt="Rishi Rai — AI Engineer, IIT Patna"
                   fill
                   className="object-cover"
