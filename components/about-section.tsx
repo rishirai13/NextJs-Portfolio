@@ -1,140 +1,375 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { GraduationCap, Briefcase, Award } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+/**
+ * About Section
+ * ──────────────────────────────────────────────────────────
+ * • Scroll-triggered reveal animations
+ * • Two-column layout: bio + credentials
+ * • Education & experience cards with glassmorphism
+ * • Certifications with gold dot markers
+ * • Interest tags
+ * • "My Journey" narrative from actual resume data
+ */
+
+import { useEffect, useRef, useState } from "react";
+import { GraduationCap, Briefcase, Award, Code2, Shield } from "lucide-react";
+
+const CREDENTIAL_CARDS = [
+  {
+    icon: <GraduationCap size={22} />,
+    title: "MTech AI & DS",
+    org: "IIT Patna",
+    detail: "Computer Science & Engineering",
+    period: "2026 – Present",
+    color: "#C9A84C",
+    bg: "rgba(201,168,76,0.08)",
+  },
+  {
+    icon: <GraduationCap size={22} />,
+    title: "BTech CSE",
+    org: "GLA University, Mathura",
+    detail: "Data Analytics Specialisation",
+    period: "2021 – 2025",
+    color: "#60A5FA",
+    bg: "rgba(96,165,250,0.08)",
+  },
+  {
+    icon: <Shield size={22} />,
+    title: "Infra Security Trainee",
+    org: "Wipro Limited",
+    detail: "AD · Palo Alto · Kali Linux",
+    period: "Jan – Mar 2026",
+    color: "#34D399",
+    bg: "rgba(52,211,153,0.08)",
+  },
+  {
+    icon: <Briefcase size={22} />,
+    title: "SWE Intern",
+    org: "Thales DIS Tech Pvt. Ltd.",
+    detail: "Linux PAM · Python · Bash",
+    period: "Jun – Jul 2023",
+    color: "#A78BFA",
+    bg: "rgba(167,139,250,0.08)",
+  },
+];
+
+const CERTIFICATIONS = [
+  "Microsoft Certified: Azure Data Fundamentals (DP-900)",
+  "Microsoft Certified: Azure Fundamentals (AZ-900)",
+  "Microsoft Certified: AI Fundamentals (AI-900)",
+];
+
+const INTERESTS = [
+  "AI / ML",
+  "Full-Stack SDE",
+  "Data Science",
+  "Cloud Security",
+  "NLP",
+  "Open Source",
+  "SDE Prep",
+];
 
 export default function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
 
+  /* ── Intersection observer ─────────────────────────── */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setVisible(true);
       },
       { threshold: 0.1 },
-    )
-
-    const element = document.getElementById("about")
-    if (element) {
-      observer.observe(element)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">About Me</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              I'm a passionate Full Stack Developer currently pursuing my Bachelor's in Computer Science at GLA
-              University. With hands-on experience in modern web technologies and a strong foundation in both frontend
-              and backend development, I love creating innovative solutions that solve real-world problems.
-            </p>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative py-28 overflow-hidden"
+      style={{ background: "var(--obsidian-2)" }}
+      aria-label="About Rishi Rai"
+    >
+      {/* Subtle orb */}
+      <div
+        className="orb orb-gold absolute"
+        style={{
+          width: 500,
+          height: 500,
+          top: "0%",
+          left: "30%",
+          opacity: 0.35,
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        {/* ── Section header ─────────────────────────── */}
+        <div className={`mb-16 reveal ${visible ? "visible" : ""}`}>
+          <div className="section-label mb-3">About Me</div>
+          <div className="gold-line mb-5" aria-hidden="true" />
+          <h2
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2.2rem, 4vw, 3.5rem)",
+              fontWeight: 600,
+              color: "var(--cream)",
+              lineHeight: 1.1,
+            }}
+          >
+            The Architect Behind
+            <br />
+            <span className="text-gradient-gold">the Code</span>
+          </h2>
+        </div>
+
+        {/* ── Two-column layout ──────────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* ── LEFT: Narrative bio ──────────────────── */}
+          <div>
+            <div
+              className={`space-y-5 reveal ${visible ? "visible" : ""} delay-1`}
+            >
+              <p
+                style={{
+                  color: "var(--cream-dim)",
+                  lineHeight: 1.85,
+                  fontSize: "1rem",
+                }}
+              >
+                I'm an{" "}
+                <strong style={{ color: "var(--cream)", fontWeight: 500 }}>
+                  AI-first full-stack engineer
+                </strong>{" "}
+                at IIT Patna, sitting at the intersection of production-grade
+                web systems and applied machine learning. My work doesn't live
+                in notebooks — it ships to real users.
+              </p>
+              <p
+                style={{
+                  color: "var(--cream-dim)",
+                  lineHeight: 1.85,
+                  fontSize: "1rem",
+                }}
+              >
+                At{" "}
+                <strong style={{ color: "var(--cream)", fontWeight: 500 }}>
+                  Thales DIS Technology
+                </strong>
+                , I engineered a Linux PAM authentication module in C — cutting
+                manual verification steps by ~40% in the test environment and
+                automating team workflows to reduce manual effort by 80% with
+                zero regressions.
+              </p>
+              <p
+                style={{
+                  color: "var(--cream-dim)",
+                  lineHeight: 1.85,
+                  fontSize: "1rem",
+                }}
+              >
+                At{" "}
+                <strong style={{ color: "var(--cream)", fontWeight: 500 }}>
+                  Wipro
+                </strong>
+                , I hardened enterprise infrastructure: configuring Palo Alto
+                firewalls with AppID/URL filtering, running live ARP-poisoning
+                attacks on Active Directory using Kali Linux, and applying CIS
+                Benchmark controls across lab networks.
+              </p>
+              <p
+                style={{
+                  color: "var(--cream-dim)",
+                  lineHeight: 1.85,
+                  fontSize: "1rem",
+                }}
+              >
+                My projects live in production.{" "}
+                <strong style={{ color: "var(--gold)" }}>DevTrack</strong>{" "}
+                serves 50+ active developers;{" "}
+                <strong style={{ color: "var(--gold)" }}>NOTE-MINT</strong> runs
+                entirely client-side with sub-second load; my{" "}
+                <strong style={{ color: "var(--gold)" }}>
+                  Attrition ML System
+                </strong>{" "}
+                uses XGBoost + SHAP for real-time explainable risk scoring —
+                Dockerised and deployed.
+              </p>
+            </div>
+
+            {/* Certifications */}
+            <div className={`mt-10 reveal ${visible ? "visible" : ""} delay-2`}>
+              <h3
+                className="mb-5"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.4rem",
+                  fontWeight: 600,
+                  color: "var(--cream)",
+                }}
+              >
+                Certifications
+              </h3>
+              <div className="space-y-3">
+                {CERTIFICATIONS.map((cert, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <Award
+                      size={14}
+                      style={{ color: "var(--gold)", flexShrink: 0 }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      style={{ fontSize: "13px", color: "var(--cream-dim)" }}
+                    >
+                      {cert}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Interest tags */}
+            <div className={`mt-8 reveal ${visible ? "visible" : ""} delay-3`}>
+              <h3
+                className="mb-4"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.4rem",
+                  fontWeight: 600,
+                  color: "var(--cream)",
+                }}
+              >
+                Focus Areas
+              </h3>
+              <div
+                className="flex flex-wrap gap-2"
+                role="list"
+                aria-label="Areas of interest"
+              >
+                {INTERESTS.map((tag) => (
+                  <span key={tag} className="tag" role="listitem">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Experience Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors duration-300">
-                  <GraduationCap className="w-8 h-8 text-blue-600" />
+          {/* ── RIGHT: Credential cards ──────────────── */}
+          <div
+            className={`grid sm:grid-cols-2 gap-5 reveal-right ${visible ? "visible" : ""} delay-2`}
+          >
+            {CREDENTIAL_CARDS.map((card, i) => (
+              <div
+                key={i}
+                className="glass rounded-2xl p-6 group transition-all duration-400"
+                style={{
+                  borderColor: "var(--border)",
+                  cursor: "default",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = `${card.color}40`;
+                  el.style.transform = "translateY(-4px)";
+                  el.style.boxShadow = `0 16px 40px rgba(0,0,0,0.3), 0 0 24px ${card.color}12`;
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = "var(--border)";
+                  el.style.transform = "translateY(0)";
+                  el.style.boxShadow = "var(--shadow-card)";
+                }}
+              >
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
+                  style={{ background: card.bg, color: card.color }}
+                  aria-hidden="true"
+                >
+                  {card.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Education</h3>
-                <p className="text-slate-600 mb-2">Bachelor of Technology</p>
-                <p className="text-slate-500 text-sm">Computer Science & Engineering</p>
-                <p className="text-slate-500 text-sm">GLA University, Mathura</p>
-                <p className="text-blue-600 font-medium text-sm">Graduating May 2025</p>
-              </CardContent>
-            </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors duration-300">
-                  <Briefcase className="w-8 h-8 text-green-600" />
+                {/* Content */}
+                <div
+                  className="section-label mb-1"
+                  style={{ color: card.color, opacity: 1, fontSize: "10px" }}
+                >
+                  {card.period}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Experience</h3>
-                <p className="text-slate-600 mb-2">Software Development Intern</p>
-                <p className="text-slate-500 text-sm">THALES DIS Technology Pvt. Ltd.</p>
-                <p className="text-slate-500 text-sm">Banking & Payment Services</p>
-                <p className="text-green-600 font-medium text-sm">June - July 2023</p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors duration-300">
-                  <Award className="w-8 h-8 text-purple-600" />
+                <h4
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    color: "var(--cream)",
+                    marginBottom: 2,
+                  }}
+                >
+                  {card.title}
+                </h4>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: card.color,
+                    fontWeight: 500,
+                    marginBottom: 4,
+                  }}
+                >
+                  {card.org}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Achievements</h3>
-                <p className="text-slate-600 mb-2">5-Star Coder</p>
-                <p className="text-slate-500 text-sm">HackerRank (Python, Java)</p>
-                <p className="text-slate-500 text-sm">250+ LeetCode Problems</p>
-                <p className="text-purple-600 font-medium text-sm">Microsoft Azure Certified</p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Detailed Bio */}
-          <div className="bg-slate-50 rounded-2xl p-8 lg:p-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-6">My Journey</h3>
-                <div className="space-y-4 text-slate-600">
-                  <p>
-                    My passion for technology began early, and I've been dedicated to mastering the art of full-stack
-                    development. During my internship at THALES DIS Technology, I worked on critical banking systems,
-                    creating PAM authentication modules in C for secure Linux-based login systems.
-                  </p>
-                  <p>
-                    I've built several impactful projects, including EduNex, an AI-powered learning ecosystem that
-                    increased user engagement by 50%, and DevSphere, a real-time Markdown blog editor with live preview
-                    capabilities.
-                  </p>
-                  <p>
-                    When I'm not coding, you can find me solving algorithmic challenges on LeetCode and HackerRank,
-                    where I've achieved 5-star ratings and solved over 250 problems. I'm also Microsoft Azure certified
-                    and continuously learning new technologies.
-                  </p>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    color: "var(--cream-muted)",
+                    fontFamily: "'DM Mono', monospace",
+                  }}
+                >
+                  {card.detail}
                 </div>
               </div>
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-slate-900 mb-3">Certifications</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      <span className="text-slate-600">Microsoft Azure Data Fundamentals (DP-900)</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      <span className="text-slate-600">Microsoft Azure Fundamentals (AZ-900)</span>
-                    </div>
-                  </div>
+            ))}
+
+            {/* ── Highlight stat card ───────────────── */}
+            <div
+              className="sm:col-span-2 glass-gold rounded-2xl p-6 flex items-center gap-6"
+              aria-label="Key achievement: 80% automation at Thales"
+            >
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "3.5rem",
+                  fontWeight: 600,
+                  color: "var(--gold)",
+                  lineHeight: 1,
+                  flexShrink: 0,
+                }}
+              >
+                80%
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "var(--cream)",
+                    marginBottom: 4,
+                  }}
+                >
+                  Workflow Automation at Thales DIS
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-slate-900 mb-3">Interests</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["AI/ML", "Cloud Computing", "Open Source", "Problem Solving", "Sports"].map((interest) => (
-                      <span
-                        key={interest}
-                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
-                      >
-                        {interest}
-                      </span>
-                    ))}
-                  </div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "var(--cream-muted)",
+                    fontFamily: "'DM Mono', monospace",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  Python + Bash scripting · 20+ edge-case tests written · zero
+                  regressions on handoff
                 </div>
               </div>
             </div>
@@ -142,5 +377,5 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
