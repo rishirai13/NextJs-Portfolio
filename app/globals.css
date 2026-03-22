@@ -464,8 +464,11 @@ body {
 
 /* ── Tailwind overrides ──────────────────────────────────────── */
 @layer base {
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground; }
+  * { border-color: var(--border); }
+  body {
+    background-color: var(--obsidian);
+    color: var(--cream);
+  }
 }
 
 /* ── Responsive typography ───────────────────────────────────── */
