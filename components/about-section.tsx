@@ -17,10 +17,10 @@ import { GraduationCap, Briefcase, Award, Code2, Shield } from "lucide-react";
 const CREDENTIAL_CARDS = [
   {
     icon: <GraduationCap size={22} />,
-    title: "MTech AI & DS",
+    title: "MTech AI & DSE",
     org: "IIT Patna",
     detail: "Computer Science & Engineering",
-    period: "2026 – Present",
+    period: "2025 – Present",
     color: "#C9A84C",
     bg: "rgba(201,168,76,0.08)",
   },
