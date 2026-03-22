@@ -35,7 +35,6 @@ export default function Home() {
       <ProjectsSection />
       <SkillsSection />
       <ContactSection />
-      <h1>TEST SUCCESS</h1>
       <Footer />
     </main>
   );
