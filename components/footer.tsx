@@ -237,15 +237,17 @@ export default function Footer() {
               {" and strong opinions about scalable code."}
             </p>
 
-          <div
-            style={{
-              fontSize: "11px",
-              color: "var(--cream-muted)",
-              fontFamily: "'DM Mono', monospace",
-              whiteSpace: "nowrap",
-            }}
-          >
-            IIT Patna · MTech AI & DSE · 2026
+            <p
+              style={{
+                fontSize: "11px",
+                color: "var(--cream-muted)",
+                fontFamily: "'DM Mono', monospace",
+                whiteSpace: "nowrap",
+                textAlign: "center",
+              }}
+            >
+              IIT Patna · MTech AI &amp; DS · 2026
+            </p>
           </div>
         </div>
       </div>
