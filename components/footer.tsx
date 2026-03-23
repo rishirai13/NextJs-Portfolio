@@ -246,7 +246,7 @@ export default function Footer() {
                 textAlign: "center",
               }}
             >
-              IIT Patna · MTech AI &amp; DS · 2026
+              IIT Patna · MTech AI &amp; DSE · 2026
             </p>
           </div>
         </div>
