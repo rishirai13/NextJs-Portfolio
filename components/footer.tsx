@@ -1,15 +1,5 @@
 "use client";
 
-/**
- * Footer — MOBILE FIXED v2
- * ─────────────────────────────────────────────────────────
- * FIX 3: Mobile layout completely restructured.
- *   • Single-column stack on mobile (brand → nav → socials → badge)
- *   • 3-col grid only on md+
- *   • Copyright bar wraps cleanly on small screens
- *   • No text overflow / cramped columns on narrow viewports
- */
-
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 const NAV_LINKS = [
@@ -62,12 +52,8 @@ export default function Footer() {
       aria-label="Site footer"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-14">
-        {/* ══ Main grid ══════════════════════════════════════════
-            Mobile  : 1 column, stacked
-            md+     : 3 columns side by side
-        ════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* ── Brand ──────────────────────────────────────────── */}
+          {/* Brand */}
           <div>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -110,7 +96,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* ── Navigation ─────────────────────────────────────── */}
+          {/* Navigation */}
           <div>
             <div
               className="section-label mb-4"
@@ -118,7 +104,6 @@ export default function Footer() {
             >
               Navigation
             </div>
-            {/* 2-column nav grid on mobile so it doesn't stretch too tall */}
             <div className="grid grid-cols-2 sm:grid-cols-1 gap-y-2 gap-x-4">
               {NAV_LINKS.map((link) => (
                 <button
@@ -150,7 +135,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Connect ────────────────────────────────────────── */}
+          {/* Connect */}
           <div>
             <div
               className="section-label mb-4"
@@ -159,7 +144,6 @@ export default function Footer() {
               Connect
             </div>
 
-            {/* Social icons */}
             <div className="flex gap-3 mb-5">
               {SOCIALS.map((s) => (
                 <a
@@ -227,35 +211,31 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ══ Bottom copyright bar ═══════════════════════════════
-            Uses flex-col on mobile so the two lines never cramp.
-        ════════════════════════════════════════════════════════ */}
+        {/* Bottom copyright bar */}
         <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left"
+          className="mt-10 pt-6"
           style={{ borderTop: "1px solid var(--border)" }}
         >
-          <p
-            className="flex flex-wrap items-center justify-center sm:justify-start gap-1"
-            style={{
-              fontSize: "12px",
-              color: "var(--cream-muted)",
-              fontFamily: "'DM Mono', monospace",
-            }}
-          >
-            <span>© {year} Rishi Rai</span>
-            <span aria-hidden="true" className="hidden sm:inline">
-              ·
-            </span>
-            <span className="flex items-center gap-1">
-              Built with
+          <div className="flex flex-col items-center gap-2 md:flex-row md:justify-between md:items-center">
+            <p
+              style={{
+                fontSize: "12px",
+                color: "var(--cream-muted)",
+                fontFamily: "'DM Mono', monospace",
+                textAlign: "center",
+                lineHeight: 1.8,
+              }}
+            >
+              {"© "}
+              {year}
+              {" Rishi Rai · Built with "}
               <Heart
                 size={11}
-                className="text-red-500 fill-current"
+                className="inline text-red-500 fill-current"
                 aria-label="love"
               />
-              and strong opinions about scalable code.
-            </span>
-          </p>
+              {" and strong opinions about scalable code."}
+            </p>
 
           <div
             style={{
