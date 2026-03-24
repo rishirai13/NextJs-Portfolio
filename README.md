@@ -3,7 +3,7 @@
 <em>Architect of scalable digital experiences</em>
 </p>
 <p align="center">
-  <img src="https://github.com/rishirai13/NextJs-Portfolio/blob/798a1e7d42200115cb366291ec6ffcebf8c92dd1/hero.png" alt="Portfolio Preview" width="500"/>
+  <img src="https://github.com/rishirai13/NextJs-Portfolio/blob/798a1e7d42200115cb366291ec6ffcebf8c92dd1/hero.png" alt="Portfolio Preview" width="700"/>
 </p>
 
 ### 🎯 **VISIONARY FULL-STACK ARCHITECT**
