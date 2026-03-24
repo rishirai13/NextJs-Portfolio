@@ -3,7 +3,7 @@
 <em>Architect of scalable digital experiences</em>
 </p>
 <p align="center">
-  <img src="https://github.com/rishirai13/Rishi-s-Portfolio/blob/362741e7433fd4ba9a8f31f3c6141a8dd7e6434d/hero.png" alt="Portfolio Preview" width="600"/>
+  <img src="https://github.com/rishirai13/Rishi-s-Portfolio/blob/362741e7433fd4ba9a8f31f3c6141a8dd7e6434d/Hero.png" alt="Portfolio Preview" width="600"/>
 </p>
 
 ### 🎯 **VISIONARY FULL-STACK ARCHITECT**
